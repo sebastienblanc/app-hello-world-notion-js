@@ -15,7 +15,7 @@ const verifyEnvs = (email, password, deviceId) => {
   }
 }
 verifyEnvs(email, password, deviceId);
-console.log(`${email} attempting to authenticate with ${deviceId}`);
+//console.log(`${email} attempting to authenticate with ${deviceId}`);
 
 const notion = new Notion({
   deviceId
@@ -32,11 +32,16 @@ const main = async () => {
   });
   console.log("Logged in");
 
-  notion.calm().subscribe((calm) => {
-    if (calm.probability > 0.3) {
-      console.log("Hello world");
-    }
+  notion.kinesis("leftThumbFinger").subscribe((intent) => {
+    if(intent.predictions[0].probability > 0.99) {
+    console.log("leftThumbFinger " + intent.predictions[0].probability );
+      }
   });
+
+  
+  
+
+ 
 }
 
 main();
